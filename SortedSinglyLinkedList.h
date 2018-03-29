@@ -20,7 +20,6 @@ class SortedSinglyLinkedList {
         ~SortedSinglyLinkedList() {};   // Destructor
         void printList();               // Prints list to output stream
         void addList(const T& data);    // Adds link to the correct place
-        int getIndexOf(const T& data);  // Finds index position of the link
         int getTotal();                 // Returns total number of links
 };
 
@@ -122,22 +121,6 @@ void SortedSinglyLinkedList<T>::insert(T data, Link *prev, Link *after) {
     temp->data = data;
     temp->next = after;
     prev->next = temp;
-}
-
-// ============================================================================
-// getIndexOf.
-//
-// Input -> the value of some link.
-// Output -> the index position of the link.
-// ============================================================================
-template<class T>
-int SortedSinglyLinkedList<T>::getIndexOf(const T& data) {
-    Link *ptr = head;
-    for (int i = 0; ptr != NULL; ++i, ptr = ptr->next) {
-        if (ptr->data == data) {
-            return i;
-        }
-    }
 }
 
 // ============================================================================
