@@ -1,5 +1,5 @@
-#ifndef LINKEDLIST_H
-#define LINKEDLIST_H
+#ifndef SORTED_SINGLY_LINKEDLIST_H
+#define SORTED_SINGLY_LINKEDLIST_H
 
 #include <iostream>
 using namespace std;
@@ -23,7 +23,7 @@ class SortedSinglyLinkedList {
         int getTotal();                 // Returns total number of links
 };
 
-#endif /* LINKEDLIST_H */
+#endif /* SORTED_SINGLY_LINKEDLIST_H */
 
 
 // ============================================================================

@@ -5,7 +5,7 @@ using namespace std;
 // User defined classes.
 // ============================================================================
 #include "SortedSinglyLinkedList.h"
-
+#include "DoublyLinkedList.h"
 
 // ============================================================================
 // Main.
@@ -26,6 +26,21 @@ int main(void) {
 
     // Print list
     list.printList();
+
+
+    // Create a doubly linked list.
+    DoublyLinkedList<char> doublyList;
+
+    // Populate
+    doublyList.addList('c');
+    doublyList.addList('a');
+    doublyList.addList('r');
+    doublyList.addList('l');
+    doublyList.addList('o');
+    doublyList.addList('s');
+
+    // Print
+    doublyList.printList();
 
     return 0;
 }
