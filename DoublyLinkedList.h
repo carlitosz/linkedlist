@@ -18,7 +18,6 @@ class DoublyLinkedList {
         DoublyLinkedList() { head = NULL; }
         ~DoublyLinkedList() {};
         void printList();
-        void printBackward();
         void addList(const T& data);
 };
 
@@ -33,7 +32,7 @@ class DoublyLinkedList {
 // ============================================================================
 template<class T>
 void DoublyLinkedList<T>::printList() {
-    cout << "\nPrinting doubly linked list.\n\n";
+    cout << "\n\nPrinting DoublyLinkedList.\n";
     cout << "NULL ";
 
     Link *ptr = head;
@@ -42,7 +41,7 @@ void DoublyLinkedList<T>::printList() {
         ptr = ptr->next;
     }
 
-    cout << "NULL";
+    cout << "NULL" << endl;
 }
 
 // ============================================================================

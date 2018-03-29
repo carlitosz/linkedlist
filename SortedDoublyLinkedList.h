@@ -1,44 +1,44 @@
-#ifndef SORTED_SINGLY_LINKEDLIST_H
-#define SORTED_SINGLY_LINKEDLIST_H
+#ifndef SORTED_DOUBLY_LINKED_LIST_H
+#define SORTED_DOUBLY_LINKED_LIST_H
 
 #include <iostream>
 using namespace std;
 
 template<class T>
-class SortedSinglyLinkedList {
+class SortedDoublyLinkedList {
     private:
         struct Link {
-            T data;                     // Stores data
-            Link *next;                 // Pointer to the next link
+            T data;
+            Link *next;         // Points to next
+            Link *prev;         // Points to previous
         };
 
-        Link *head;                     // Points to the first link
-        void insert(T, Link*, Link*);
+        Link *head;
     public:
-        // Default constructor
-        SortedSinglyLinkedList() { head = NULL; }
-        ~SortedSinglyLinkedList() {};   // Destructor
-        void printList();               // Prints list to output stream
-        void addList(const T& data);    // Adds link to the correct place
-        int getTotal();                 // Returns total number of links
+        SortedDoublyLinkedList() { head = NULL; }
+        ~SortedDoublyLinkedList() {};
+        void printList();
+        void addList(const T& data);
+        int getTotal();
 };
 
-#endif /* SORTED_SINGLY_LINKEDLIST_H */
+#endif /* SORTED_DOUBLY_LINKED_LIST_H */
 
 
 // ============================================================================
 // printList.
-// 
+//
 // Input -> nothing.
-// Output -> the list.
+// Output -> prints the list.
 // ============================================================================
 template<class T>
-void SortedSinglyLinkedList<T>::printList() {
-    cout << "\n\nPrinting sorted singly linked list.\n";
+void SortedDoublyLinkedList<T>::printList() {
+    cout << "\n\nPrinting SortedDoublyLinkedList.\n";
+    cout << "NULL ";
 
     Link *ptr = head;
     while (ptr != NULL) {
-        cout << ptr->data << " -> ";
+        cout << " <- " << ptr->data << " -> ";
         ptr = ptr->next;
     }
 
@@ -46,55 +46,62 @@ void SortedSinglyLinkedList<T>::printList() {
 }
 
 // ============================================================================
-// addList.
+// addList
 //
-// Input -> the data for the new link.
+// Input -> The value to add.
 // Output -> nothing.
 // ============================================================================
 template<class T>
-void SortedSinglyLinkedList<T>::addList(const T& data) {
+void SortedDoublyLinkedList<T>::addList(const T& data) {
     // Add to empty list
     if (head == NULL) {
         Link *temp = new Link;
-        temp->data = data;
+        temp->prev = NULL;
         temp->next = NULL;
+        temp->data = data;
         head = temp;
 
         return;
     }
 
-    // Add in front
+    // Add to front
     Link *ptr = head;
-    if (data < ptr->data) {
+    if (head->data > data) {
         Link *temp = new Link;
         temp->data = data;
+        temp->prev = NULL;
         temp->next = ptr;
         head = temp;
 
         return;
     }
 
-    // Add before single link.
+    // Add to single link
     ptr = head;
     if (getTotal() < 2) {
         if (data <= head->data) {
             Link *temp = new Link;
-            temp->next = head;
             temp->data = data;
-            ptr->next = NULL;
+            temp->prev = NULL;
+            temp->next = ptr;
+            ptr->prev = temp;
             head = temp;
 
-            return;
+            return;                
         }
 
         if (data > head->data) {
-            insert(data, ptr, NULL);
+            Link *temp = new Link;
+            temp->data = data;
+            temp->prev = ptr;
+            temp->next = NULL;
+            ptr->next = temp;
 
             return;
         }
     }
 
-    // Get prev/after links.
+    // Find position of next link.
     Link *prev = head;
     Link *after = head->next;
     while (data > prev->data) {
@@ -108,20 +115,15 @@ void SortedSinglyLinkedList<T>::addList(const T& data) {
         if (after == NULL) break;
     }
 
-    insert(data, prev, after);
-}
-
-// ============================================================================
-// Insert.
-//
-// ============================================================================
-template<class T>
-void SortedSinglyLinkedList<T>::insert(T data, Link *prev, Link *after) {
+    // Insert
     Link *temp = new Link;
     temp->data = data;
     temp->next = after;
+    temp->prev = prev;
     prev->next = temp;
+
 }
+
 
 // ============================================================================
 // getTotal.
@@ -130,7 +132,7 @@ void SortedSinglyLinkedList<T>::insert(T data, Link *prev, Link *after) {
 // Output -> total number of links in the list.
 // ============================================================================
 template<class T>
-int SortedSinglyLinkedList<T>::getTotal() {
+int SortedDoublyLinkedList<T>::getTotal() {
     if (head == NULL) {
         return 0;
     }
