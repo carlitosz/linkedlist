@@ -133,10 +133,5 @@ int main(void) {
     sortedDoublyPriorityList.prioritize(45.43);
     sortedDoublyPriorityList.printList();
 
-        // Prioritize the first
-    cout << "\n\n********** Prioritizing 4.5 **********";
-    sortedDoublyPriorityList.prioritize(4.5);
-    sortedDoublyPriorityList.printList();
-
     return 0;
 }

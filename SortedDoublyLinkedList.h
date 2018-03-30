@@ -16,12 +16,18 @@ class SortedDoublyLinkedList {
         Link *head;
     public:
         SortedDoublyLinkedList() { head = NULL; }
-        ~SortedDoublyLinkedList() {};
         void printList();
         void addList(const T& data);
         int getTotal();
         void moveToFront(const T& data);
         bool inList(const T& data);
+        ~SortedDoublyLinkedList() {
+            Link *ptr = head;
+            while (ptr != NULL) {
+                delete ptr;
+                ptr = ptr->next;
+            }
+        }
 };
 
 // ============================================================================

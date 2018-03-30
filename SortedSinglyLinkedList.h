@@ -17,12 +17,19 @@ class SortedSinglyLinkedList {
     public:
         // Default constructor
         SortedSinglyLinkedList() { head = NULL; }
-        ~SortedSinglyLinkedList() {};   // Destructor
         void printList();               // Prints list to output stream
         void addList(const T& data);    // Adds link to the correct place
         int getTotal();                 // Returns total number of links
         bool inList(const T& data);     // True if the value exists in the list
         void moveToFront(const T& data);// Moves this link to the front.
+
+        ~SortedSinglyLinkedList() {
+            Link *ptr = head;
+            while (ptr != NULL) {
+                delete ptr;
+                ptr = ptr->next;
+            }
+        }
 };
 
 // ============================================================================
