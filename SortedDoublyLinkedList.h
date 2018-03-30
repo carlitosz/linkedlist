@@ -22,8 +22,6 @@ class SortedDoublyLinkedList {
         int getTotal();
 };
 
-#endif /* SORTED_DOUBLY_LINKED_LIST_H */
-
 
 // ============================================================================
 // printList.
@@ -146,3 +144,5 @@ int SortedDoublyLinkedList<T>::getTotal() {
 
     return i;
 }
+
+#endif /* SORTED_DOUBLY_LINKED_LIST_H */

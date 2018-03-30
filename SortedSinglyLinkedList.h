@@ -1,5 +1,5 @@
-#ifndef SORTED_SINGLY_LINKEDLIST_H
-#define SORTED_SINGLY_LINKEDLIST_H
+#ifndef SORTED_SINGLY_LINKED_LIST_H
+#define SORTED_SINGLY_LINKED_LIST_H
 
 #include <iostream>
 using namespace std;
@@ -21,10 +21,69 @@ class SortedSinglyLinkedList {
         void printList();               // Prints list to output stream
         void addList(const T& data);    // Adds link to the correct place
         int getTotal();                 // Returns total number of links
+        bool inList(const T& data);     // True if the value exists in the list
+        void moveToFront(const T& data);// Moves this link to the front.
 };
 
-#endif /* SORTED_SINGLY_LINKEDLIST_H */
+// ============================================================================
+// moveToFront.
+//
+// Input -> the value to move.
+// Output -> nothing.
+// ============================================================================
+template<class T>
+void SortedSinglyLinkedList<T>::moveToFront(const T& data) {
+    if (data == head->data) {
+        cout << "Priority for value " << data << " is already set." << endl;
+        return;
+    }
 
+    // Find the target link
+    Link *tmp = head;
+    Link *prev = head;
+    Link *after = head->next;
+    while (after != NULL) {
+        if (after->data == data) {
+            break;            
+        }
+
+        after = after->next;
+        prev = prev->next;
+    }
+
+    // Set the new links.
+    if (after->next == NULL) {
+        prev->next = NULL;
+        after->next = head;
+        head = after;
+
+        return;
+    }
+
+    prev->next = after->next;
+    head = after;
+    after->next = tmp;
+}
+
+// ============================================================================
+// inList.
+//
+// Input -> the value to find.
+// Output -> true if found, false if not.
+// ============================================================================
+template<class T>
+bool SortedSinglyLinkedList<T>::inList(const T& data) {
+    Link *ptr = head;
+    while (ptr != NULL) {
+        if (ptr->data == data) {
+            return true;
+        }
+
+        ptr = ptr->next;
+    }
+
+    return false;
+}
 
 // ============================================================================
 // printList.
@@ -144,3 +203,5 @@ int SortedSinglyLinkedList<T>::getTotal() {
 
     return i;
 }
+
+#endif /* SORTED_SINGLY_LINKED_LIST_H */

@@ -21,8 +21,6 @@ class DoublyLinkedList {
         void addList(const T& data);
 };
 
-#endif /* DOUBLY_LINKED_LIST_H */
-
 
 // ============================================================================
 // printList.
@@ -75,3 +73,5 @@ void DoublyLinkedList<T>::addList(const T& data) {
     temp->data = data;
     ptr->next = temp;
 }
+
+#endif /* DOUBLY_LINKED_LIST_H */
