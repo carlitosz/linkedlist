@@ -8,6 +8,7 @@ using namespace std;
 #include "DoublyLinkedList.h"
 #include "SortedDoublyLinkedList.h"
 #include "SortedSinglyPriorityLinkedList.h"
+#include "SortedDoublyPriorityLinkedList.h"
 
 // ============================================================================
 // Main.
@@ -97,6 +98,45 @@ int main(void) {
     sortedPriorityList.prioritize(1);
     cout << "\n\n********** Prioritizing 1 **********";
     sortedPriorityList.printList();
+
+    // ========================================================================
+
+    // Create a doubly priority list.
+    SortedDoublyPriorityLinkedList<float> sortedDoublyPriorityList;
+
+    // Populate
+    sortedDoublyPriorityList.addList(4.5);
+    sortedDoublyPriorityList.addList(67.5);
+    sortedDoublyPriorityList.addList(45.5);
+    sortedDoublyPriorityList.addList(3.25);
+    sortedDoublyPriorityList.addList(78.34);
+    sortedDoublyPriorityList.addList(23.5);
+    sortedDoublyPriorityList.addList(1.10);
+    sortedDoublyPriorityList.addList(44.56);
+    sortedDoublyPriorityList.addList(6.23);
+    sortedDoublyPriorityList.addList(65.75);
+    sortedDoublyPriorityList.addList(21.54);
+    sortedDoublyPriorityList.addList(436.64);
+    sortedDoublyPriorityList.addList(87.74);
+    sortedDoublyPriorityList.addList(45.43);
+
+    // Print
+    sortedDoublyPriorityList.printList();
+
+    // Prioritize a middle link
+    cout << "\n\n********** Prioritizing 78.34 **********";
+    sortedDoublyPriorityList.prioritize(78.34);
+    sortedDoublyPriorityList.printList();
+
+    // Prioritize the end
+    cout << "\n\n********** Prioritizing 45.43 **********";
+    sortedDoublyPriorityList.prioritize(45.43);
+    sortedDoublyPriorityList.printList();
+
+        // Prioritize the first
+    cout << "\n\n********** Prioritizing 4.5 **********";
+    sortedDoublyPriorityList.prioritize(4.5);
+    sortedDoublyPriorityList.printList();
 
     return 0;
 }

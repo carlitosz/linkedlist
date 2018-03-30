@@ -20,8 +20,66 @@ class SortedDoublyLinkedList {
         void printList();
         void addList(const T& data);
         int getTotal();
+        void moveToFront(const T& data);
+        bool inList(const T& data);
 };
 
+// ============================================================================
+// inList.
+//
+// Input -> The value to find.
+// Output -> True if found, else false.
+// ============================================================================
+template<class T>
+bool SortedDoublyLinkedList<T>::inList(const T& data) {
+    Link *ptr = head;
+    while (ptr != NULL) {
+        if (ptr->data == data) {
+            return true;
+        }
+
+        ptr = ptr->next;
+    }
+
+    return false;
+}
+
+// ============================================================================
+// moveToFront.
+//
+// Input -> nothing.
+// Output -> nothing.
+// ============================================================================
+template<class T>
+void SortedDoublyLinkedList<T>::moveToFront(const T& data) {
+    if (data == head->data) {
+        cout << "Priority for value " << data << " is already set." << endl;
+    }
+
+    // Find the target link.
+    Link *ptr = head;
+    Link *tmp = head;
+    while (ptr != NULL) {
+        if (ptr->data == data) {
+            break;
+        }
+
+        ptr = ptr->next;
+    }
+
+    // Set the new null
+    if (ptr->next == NULL) {
+        ptr->prev->next = NULL;
+
+        return;
+    }
+
+    ptr->prev->next = ptr->next;
+    ptr->next->prev = ptr->prev;
+    head = ptr;
+    ptr->prev = NULL;
+    ptr->next = tmp;
+}
 
 // ============================================================================
 // printList.
